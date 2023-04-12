@@ -58,6 +58,11 @@ class Main extends Application {
     */
     val circleNum = getParameters.getNamed.getOrDefault("num","30").toInt
 
+    //2-6初級問題
+    //コマンドラインでjarファイル実行時に、円の内側の色を引数として渡せるようにした
+    //(引数を渡さなければデフォルト色として、白になる)
+    val circleInnerColor = getParameters.getNamed.getOrDefault("color","white")
+
     /* 
       表示する図形の設定
 
@@ -66,10 +71,10 @@ class Main extends Application {
       作成される円の数だけ、ループする。
     */
     for (i <- 1 to circleNum) {
-      val circle = new Circle(150, Color.web("white", 0.05))  
-      circle.setStrokeType(StrokeType.OUTSIDE)
-      circle.setStroke(Color.web("white", 0.16))
-      circle.setStrokeWidth(4)
+      val circle = new Circle(150, Color.web(circleInnerColor, 0.05)) //円を作成して、円の色と透明度を設定
+      circle.setStrokeType(StrokeType.OUTSIDE)  //円に縁を設定
+      circle.setStroke(Color.web("white", 0.16))  //円の縁の色と透明度
+      circle.setStrokeWidth(4)  //円の縁の太さ
       circles.getChildren().add(circle)
     }
 
